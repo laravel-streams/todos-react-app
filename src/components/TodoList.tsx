@@ -18,13 +18,13 @@ TodoList.propTypes = {
 	completeAllTodos: PropTypes.func.isRequired,
 };
 
-function TodoList(props) {
+function TodoList(props: any) {
 	const [filter, setFilter] = useState('all');
 
 	return (
 		<>
 			<ul className="todo-list">
-				{props.todosFiltered(filter).map((todo, index) => (
+				{props.todosFiltered(filter).map((todo: any, index: any) => (
 					<li key={todo.id} className="todo-item-container">
 						<div className="todo-item">
 							<input

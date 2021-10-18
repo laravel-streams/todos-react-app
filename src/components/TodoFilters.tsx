@@ -7,7 +7,7 @@ TodoFilters.propTypes = {
 	setFilter: PropTypes.func.isRequired,
 };
 
-function TodoFilters(props) {
+function TodoFilters(props: any) {
 	return (
 		<div>
 			<button

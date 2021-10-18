@@ -5,7 +5,7 @@ TodoItemsRemaining.propTypes = {
 	remaining: PropTypes.func.isRequired,
 };
 
-function TodoItemsRemaining(props) {
+function TodoItemsRemaining(props: any) {
 	return <span>{props.remaining()} items remaining</span>;
 }
 

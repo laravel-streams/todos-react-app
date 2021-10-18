@@ -5,7 +5,7 @@ TodoClearComplete.propTypes = {
 	clearComplete: PropTypes.func.isRequired,
 };
 
-function TodoClearComplete(props) {
+function TodoClearComplete(props: any) {
 	return (
 		<button onClick={props.clearComplete} className="button">
 			Clear completed

@@ -5,14 +5,14 @@ TodoForm.propTypes = {
 	addTodo: PropTypes.func.isRequired,
 };
 
-function TodoForm(props) {
+function TodoForm(props: any) {
 	const [todoInput, setTodoInput] = useState('');
 
-	function handleInput(event) {
+	function handleInput(event: any) {
 		setTodoInput(event.target.value);
 	}
 
-	function handleSubmit(event) {
+	function handleSubmit(event: any) {
 		event.preventDefault();
 
 		if (todoInput.trim().length === 0) {

@@ -5,7 +5,7 @@ TodoCompleteAllTodos.propTypes = {
 	completeAllTodos: PropTypes.func.isRequired,
 };
 
-function TodoCompleteAllTodos(props) {
+function TodoCompleteAllTodos(props: any) {
 	return (
 		<div>
 			<div onClick={props.completeAllTodos} className="button">
