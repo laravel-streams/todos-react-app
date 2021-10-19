@@ -5,16 +5,13 @@ import TodoList from './TodoList';
 import '../reset.css';
 import '../App.css';
 
-import {
-    app,
-    Streams,
-    Application,
-    CoreServiceProvider,
-} from '@laravel-streams/core';
+import '@laravel-streams/core';
+
+const app = window.streams.core.app;
 
 app.initialize({
     providers: [
-        CoreServiceProvider,
+        window.streams.core.CoreServiceProvider,
         //window.app.AppServiceProvider
     ],
     config: {
