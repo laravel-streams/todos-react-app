@@ -5,41 +5,15 @@ import TodoList from './TodoList';
 import '../reset.css';
 import '../App.css';
 
-import '@laravel-streams/core';
+import {
+    app,
+    Application,
+    Criteria,
+    EntryCollection,
+    Streams
+} from '@laravel-streams/core';
 
-const app = window.streams.core.app;
-
-app.initialize({
-    providers: [
-        window.streams.core.CoreServiceProvider,
-        //window.app.AppServiceProvider
-    ],
-    config: {
-        http: {
-            //baseURL: this.env.get('APP_URL', 'http://localhost') + '/' + this.env.get('STREAMS_API_PREFIX', 'api'),
-            baseURL: 'http://127.0.0.1:8000/api',
-        },
-    },
-})
-    .then(app => {
-        app.boot.bind(app);
-
-        console.log('Initialized');
-
-        return app;
-    })
-    .then(app => {
-        app.start();
-
-        console.log('Started');
-
-        return app;
-    })
-    .then(app => {
-        // Not sure if this is the right place for this..
-    });
-
-function App() {
+async function App() {
 
     const container: Application = app;
 
@@ -50,11 +24,16 @@ function App() {
     }, []);
 
     const getTodos = async () => {
-        app.get<Streams>('streams').entries('todos').then(query => {
+        //console.log(streams);
+        //console.log(app);
+        // app.singleton('test', 'foo');
+
+        app.get<Streams>('streams').entries('todos').then((query: Criteria) => {
+            
             query
                 .where('complete', true)
                 .get()
-                .then(todos => {
+                .then((todos: EntryCollection) => {
                     setTodos(Object.values(todos));
                 });
         });
@@ -67,17 +46,17 @@ function App() {
             complete: false,
         };
 
-        container.get<Streams>('streams').repository('todos').then(repository => {
-            repository.newInstance(newTodo).then(todo => setTodos([...todos, todo]));
-        });
+        // container.get<Streams>('streams').repository('todos').then(repository => {
+        //     repository.newInstance(newTodo).then(todo => setTodos([...todos, todo]));
+        // });
     }
 
     function deleteTodo(id: any) {
         let todo: any = [...todos].filter(todo => todo.id === id);
 
-        container.get<Streams>('streams').entries('todos').then(query => {
-            query.where('id', todo.id).delete();
-        });
+        // container.get<Streams>('streams').entries('todos').then(query => {
+        //     query.where('id', todo.id).delete();
+        // });
 
         setTodos([...todos].filter(todo => todo.id !== id));
     }
