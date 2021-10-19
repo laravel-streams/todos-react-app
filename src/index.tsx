@@ -8,42 +8,24 @@ import reportWebVitals from './reportWebVitals';
 
 import { app, CoreServiceProvider } from '@laravel-streams/core';
 
-app.initialize({
-    providers: [
-        CoreServiceProvider,
-        //window.app.AppServiceProvider
-    ],
-    config: {
-        http: {
-            //baseURL: this.env.get('APP_URL', 'http://localhost') + '/' + this.env.get('STREAMS_API_PREFIX', 'api'),
-            baseURL: 'http://127.0.0.1:8000/api',
-        },
-    },
-})
-    .then(app => {
-        app.boot.bind(app);
-
-        console.log('Initialized');
-
-        return app;
-    })
-    .then(app => {
-        app.start();
-
-        console.log('Started');
-
-        return app;
-    })
-    .then(() => {
-        
-        ReactDOM.render(
-            <React.StrictMode>
-              <App />
-            </React.StrictMode>,
-            document.getElementById('root')
-          );
+async function run() {
+    
+    await app.initialize({
+        providers: [ CoreServiceProvider ],
     });
+    
+    await app.boot();
+    await app.start();
 
+    ReactDOM.render(
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>,
+        document.getElementById('root')
+    );
+}
+
+run();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
