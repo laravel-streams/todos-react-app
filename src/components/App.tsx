@@ -7,7 +7,6 @@ import '../App.css';
 
 import {
     app,
-    Application,
     Criteria,
     EntryCollection,
     Streams
