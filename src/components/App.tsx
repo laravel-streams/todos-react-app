@@ -5,12 +5,12 @@ import TodoList from './TodoList';
 import '../reset.css';
 import '../App.css';
 
-import {
-    app,
-    Criteria,
-    EntryCollection,
-    Streams
-} from '@laravel-streams/core';
+// import {
+//     app,
+//     Criteria,
+//     EntryCollection,
+//     Streams
+// } from '@laravel-streams/core';
 
 function App() {
 
@@ -25,15 +25,15 @@ function App() {
         //console.log(app);
         // app.singleton('test', 'foo');
 
-        app.get<Streams>('streams').entries('todos').then((query: Criteria) => {
+        // app.get<Streams>('streams').entries('todos').then((query: Criteria) => {
             
-            query
-                .where('complete', true)
-                .get()
-                .then((todos: EntryCollection) => {
-                    setTodos(Object.values(todos));
-                });
-        });
+        //     query
+        //         .where('complete', true)
+        //         .get()
+        //         .then((todos: EntryCollection) => {
+        //             setTodos(Object.values(todos));
+        //         });
+        // });
     };
 
     function addTodo(todo: any) {
