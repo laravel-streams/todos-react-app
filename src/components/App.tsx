@@ -15,8 +15,6 @@ import {
 
 function App() {
 
-    const container: Application = app;
-
     const [todos, setTodos] = useState([]);
       
     useEffect(() => {
