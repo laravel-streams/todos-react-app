@@ -5,12 +5,12 @@ import TodoList from './TodoList';
 import '../reset.css';
 import '../App.css';
 
-// import {
-//     app,
-//     Criteria,
-//     EntryCollection,
-//     Streams
-// } from '@laravel-streams/core';
+import {
+    app,
+    Criteria,
+    EntryCollection,
+    Streams
+} from '@laravel-streams/core';
 
 function App() {
 
@@ -21,19 +21,16 @@ function App() {
     }, []);
 
     const getTodos = async () => {
-        //console.log(streams);
-        //console.log(app);
-        // app.singleton('test', 'foo');
-
-        // app.get<Streams>('streams').entries('todos').then((query: Criteria) => {
+        
+        app.get<Streams>('streams').entries('todos').then((query: Criteria) => {
             
-        //     query
-        //         .where('complete', true)
-        //         .get()
-        //         .then((todos: EntryCollection) => {
-        //             setTodos(Object.values(todos));
-        //         });
-        // });
+            query
+                .where('complete', true)
+                .get()
+                .then((todos: EntryCollection) => {
+                    setTodos(Object.values(todos));
+                });
+        });
     };
 
     function addTodo(todo: any) {
@@ -43,17 +40,17 @@ function App() {
             complete: false,
         };
 
-        // container.get<Streams>('streams').repository('todos').then(repository => {
-        //     repository.newInstance(newTodo).then(todo => setTodos([...todos, todo]));
-        // });
+        app.get<Streams>('streams').repository('todos').then(repository => {
+            repository.newInstance(newTodo).then(todo => setTodos([...todos, todo]));
+        });
     }
 
     function deleteTodo(id: any) {
         let todo: any = [...todos].filter(todo => todo.id === id);
 
-        // container.get<Streams>('streams').entries('todos').then(query => {
-        //     query.where('id', todo.id).delete();
-        // });
+        app.get<Streams>('streams').entries('todos').then(query => {
+            query.where('id', todo.id).delete();
+        });
 
         setTodos([...todos].filter(todo => todo.id !== id));
     }
