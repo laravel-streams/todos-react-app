@@ -13,7 +13,7 @@ import {
     Streams
 } from '@laravel-streams/core';
 
-async function App() {
+function App() {
 
     const container: Application = app;
 

@@ -9,11 +9,10 @@ import reportWebVitals from './reportWebVitals';
 import { app, CoreServiceProvider } from '@laravel-streams/core';
 
 async function run() {
-    
     await app.initialize({
-        providers: [ CoreServiceProvider ],
+        providers: [CoreServiceProvider],
     });
-    
+
     await app.boot();
     await app.start();
 
